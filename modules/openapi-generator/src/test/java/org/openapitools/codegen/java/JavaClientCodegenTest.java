@@ -1170,7 +1170,7 @@ public class JavaClientCodegenTest {
                 "formParams.add(\"file\", file);"
         );
     }
-    
+
     /**
      * See https://github.com/OpenAPITools/openapi-generator/issues/8352
      */
@@ -1199,7 +1199,7 @@ public class JavaClientCodegenTest {
         final Path defaultApi = Paths.get(output + "/src/main/java/xyz/abcdef/ApiClient.java");
         TestUtils.assertFileContains(defaultApi, "value instanceof Map");
     }
-    
+
     /**
      * See https://github.com/OpenAPITools/openapi-generator/issues/8352
      */
