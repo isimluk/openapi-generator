@@ -109,6 +109,13 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <configLocation>${project.parent.basedir}${file.separator}google_checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>

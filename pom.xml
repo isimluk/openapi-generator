@@ -105,6 +105,25 @@
         <directory>target</directory>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.plugin.version}</version>
+                <configuration>
+                    <consoleOutput>false</consoleOutput>
+                    <failsOnError>false</failsOnError>
+                    <excludes>**/samples/*.java</excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- https://www.jacoco.org/jacoco/trunk/doc/maven.html -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -342,6 +361,12 @@
                                 <folder>${project.basedir}</folder>
                                 <pattern>.*/pmd\.xml$</pattern>
                             </violation>
+                            <violation>
+                                <parser>CHECKSTYLE</parser>
+                                <reporter>Checkstyle</reporter>
+                                <folder>${project.basedir}</folder>
+                                <pattern>.*/checkstyle-result\.xml$</pattern>
+                            </violation>
                         </violations>
                     </configuration>
                     <executions>
@@ -362,6 +387,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>${pmd-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyle.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
@@ -1510,6 +1540,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
         <commons-cli.version>1.4</commons-cli.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-lang.version>3.12.0</commons-lang.version>
